@@ -109,7 +109,6 @@ const projects = [
     description: "Plataforma completa de autenticação e gerenciamento de usuários com validações avançadas e dashboard interativo.",
     tech: ["React", "TypeScript", "ZOD", "Context API"],
     preview: "/kenzie-hub-preview.jpg",
-    github: "#", // Adicione seu link GitHub aqui
     demo: "https://kenzie-hub-liviogabriel1.vercel.app/"
   },
   {
@@ -117,7 +116,7 @@ const projects = [
     description: "E-commerce dinâmico com carrinho de compras integrado e sistema de busca em tempo real.",
     tech: ["React", "Styled Components", "Framer Motion", "API"],
     preview: "/hamburgueria-preview.jpg",
-    github: "#", // Adicione seu link GitHub aqui
+    github: "https://github.com/liviogabriel1/template-fast-food-website", // Adicione seu link GitHub aqui
     demo: "https://m3-hamburgueria-kenzie-liviogabriel1-liviogabriel1.vercel.app/"
   },
   {
@@ -125,7 +124,7 @@ const projects = [
     description: "Buscador de perfis GitHub com visualização detalhada de repositórios e métricas de desenvolvimento.",
     tech: ["JavaScript", "GitHub API", "Chart.js", "LocalStorage"],
     preview: "/git-search-preview.jpg",
-    github: "#", // Adicione seu link GitHub aqui
+    github: "https://github.com/liviogabriel1/gitSearchBase", // Adicione seu link GitHub aqui
     demo: "https://kenzie-academy-brasil-developers.github.io/gitSearchBase_liviogabriel1/"
   },
   {
@@ -133,7 +132,7 @@ const projects = [
     description: "Player musical moderno com equalizador visual, temas personalizáveis e controle por gestos.",
     tech: ["JavaScript", "Web Audio API", "GSAP", "Sass"],
     preview: "/open-music-preview.jpg",
-    github: "#", // Adicione seu link GitHub aqui
+    github: "https://github.com/liviogabriel1/open-music-base_liviogabriel1", // Adicione seu link GitHub aqui
     demo: "https://kenzie-academy-brasil-developers.github.io/open-music-base_liviogabriel1/"
   }
 ];

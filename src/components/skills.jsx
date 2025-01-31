@@ -18,6 +18,14 @@ export const SkillsGrid = styled.div`
     justify-content: center;
     border: 2px solid ${({ theme }) => theme.primary}20;
   }
+
+  .tech-group {
+    padding: 1.5rem;
+    background: ${({ theme }) => theme.cardBg}20;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
 `;
 
 export const SkillBubble = styled.div`
