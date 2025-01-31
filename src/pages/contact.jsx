@@ -577,7 +577,7 @@ const Contact = () => {
         <SocialCard whileHover={{ y: -5 }}>
           <h2><FontAwesomeIcon icon={faLinkedin} /> LinkedIn</h2>
           <div className="stats-grid">
-            <StatItem icon={faBriefcase} value="Full Stack" label="Posição" />
+            <StatItem icon={faBriefcase} value="Full Stack" label="Área de atuação" />
             <StatItem icon={faUserFriends} value="20+" label="Conexões" />
             <StatItem icon={faCertificate} value="5" label="Certificados" />
           </div>
