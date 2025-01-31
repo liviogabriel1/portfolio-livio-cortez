@@ -16,6 +16,7 @@
     "axios": "^1.7.9",
     "canvas-confetti": "^1.9.3",
     "date-fns": "^4.1.0",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^12.0.6",
     "github-calendar": "^2.3.4",
     "i18next": "^24.2.2",

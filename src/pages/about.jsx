@@ -47,7 +47,7 @@ const About = () => {
       transition={{ duration: 0.8 }}
     >
       <h1>Sobre Mim</h1>
-      <p>Meu nome é Lívio Santos, sou Desenvolvedor Full Stack com experiência em diversas tecnologias modernas.</p>
+      <p>Meu nome é Lívio Gabriel Cortez Marinho Santos, sou Desenvolvedor Full Stack com experiência em diversas tecnologias modernas.</p>
       
       <ExperienceItem
         whileHover={{ scale: 1.02 }}

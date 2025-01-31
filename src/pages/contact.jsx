@@ -15,6 +15,7 @@ import { SkillBubble, SkillsGrid } from '../components/skills';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { QRCodeSVG } from 'qrcode.react';
+import emailjs from 'emailjs-com';
 
 const Container = styled(motion.div)`
 padding: 2rem;
@@ -455,9 +456,25 @@ const Contact = () => {
   // Envio do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
-    showConfetti();
-    console.log('Formulário enviado:', formData);
-    setFormData({ name: '', email: '', message: '' });
+
+    emailjs.send(
+      'service_a6x3irk', // Service ID
+      'template_5sk97s6', // Template ID
+      {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      },
+      '5FQDSyT8YPY282Ypm' // User ID
+    )
+      .then((response) => {
+        console.log('Email enviado!', response.status, response.text);
+        showConfetti();
+        setFormData({ name: '', email: '', message: '' });
+      })
+      .catch((err) => {
+        console.error('Falha no envio:', err);
+      });
   };
 
   return (
@@ -506,14 +523,14 @@ const Contact = () => {
           <h2><FontAwesomeIcon icon={faQrcode} /> Contato Rápido</h2>
           <QRCodeContainer>
             <QRCodeSVG
-              value={`MECARD:N:Livio Santos;TEL:+5579996757937;EMAIL:iiviogabriel6@gmail.com;;`}
+              value={`MECARD:N:Livio Cortez;TEL:+5579996757937;EMAIL:liviogabriel6@gmail.com;;`}
               size={128}
             />
           </QRCodeContainer>
           <p className="qr-description">Digitalize para salvar contatos</p>
         </QRCard>
       </SocialGrid>
-      
+
       {/* Botão Download CV */}
       <DownloadButton
         onClick={handleDownloadCV}
