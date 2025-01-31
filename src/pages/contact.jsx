@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faBriefcase, faCodeBranch, faUserFriends,
-  faStar, faDownload, faCertificate, faQrcode, faPaperPlane, faUser, faEnvelope, faComment, faEye, faDatabase
+  faStar, faDownload, faCertificate, faQrcode, faPaperPlane, faUser, faEnvelope, faComment, faEye, faDatabase, faSpinner
 } from '@fortawesome/free-solid-svg-icons';
 import confetti from 'canvas-confetti';
 import { SkillBubble, SkillsGrid } from '../components/skills';
@@ -18,17 +18,17 @@ import { QRCodeSVG } from 'qrcode.react';
 import emailjs from 'emailjs-com';
 
 const Container = styled(motion.div)`
-padding: 2rem;
-max-width: 1400px; // Reduzido de 1200px
-margin: 0 auto;
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 // Social Area
 const SocialGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: 1fr; // Força linhas com mesma altura
-  gap: 3rem;
+  gap: 2rem;
   margin-top: 2rem;
   align-items: stretch; // Estica os itens verticalmente
   
@@ -45,12 +45,12 @@ const SocialGrid = styled.div`
 const SocialCard = styled(motion.div)`
   background: ${({ theme }) => theme.cardBg};
   border-radius: 20px;
-  padding: 2.5rem;
+  padding: 2rem;
   color: inherit;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  min-height: 300px; // Altura mínima fixa
+  min-height: 320px; // Altura mínima fixa
   border: 1px solid ${({ theme }) => theme.primary}20;
   justify-content: space-between;
 
@@ -60,11 +60,19 @@ const SocialCard = styled(motion.div)`
   }
   
   h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
     color: ${({ theme }) => theme.primary};
   }
   
+  .stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; // Aumentado de 0.8rem
+    margin: 1.5rem 0; // Aumentado de 1rem
+    width: 100%;
+  }
+
   @media (max-width: 1200px) and (min-width: 1025px) {
     min-height: 350px; // Ajuste para telas médias
   }
@@ -80,7 +88,10 @@ const LinkEstilizado = styled.a`
   border-radius: 8px;
   transition: all 0.3s ease;
   margin-top: auto;
-  display: block;
+  display: inline-flex; // Mudar de block para inline-flex
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap; // Impede a quebra de linha
   text-align: right; // Alinha o texto à direita
   position: relative;
   align-self: flex-end; // Mantém alinhado à direita
@@ -98,6 +109,10 @@ const LinkEstilizado = styled.a`
   
   &:hover::after {
     width: 100%;
+  }
+
+  span {
+    white-space: nowrap;
   }
 
   @media (max-width: 480px) {
@@ -125,9 +140,11 @@ background: linear-gradient(
     ${({ theme }) => theme.cardBg} 0%,
     ${({ theme }) => theme.body} 100%
   );
+  overflow: hidden;
+  width: 100%;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  max-width: 600px; // Reduzido de 800px
+  max-width: 500px; // Reduzido de 800px
   margin: 1.5rem auto; // Reduzido de 2rem
   padding: 1.5rem; // Reduzido de 2rem
   transform: perspective(800px) rotateX(4deg); // Efeito mais sutil
@@ -141,7 +158,7 @@ background: linear-gradient(
 
 const FormGroup = styled.div`
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
 `;
 
 const ContactForm = styled.form`
@@ -204,9 +221,9 @@ const FloatingLabel = styled.label`
 
 // Styled Area
 const StyledInput = styled.input`
-  width: calc(100% - 2.4rem); // Ajuste de largura
-  margin: 0 1.2rem; // Centralização
-  padding: 0.8rem 1rem; // Redução do padding
+  width: 100%; // Ajuste de largura
+  margin: 0; // Centralização
+  padding: 0.8rem; // Redução do padding
   border: 2px solid ${({ theme }) => theme.primary};
   border-radius: 10px;
   background: transparent;
@@ -228,9 +245,9 @@ const StyledInput = styled.input`
 `;
 
 const StyledTextarea = styled.textarea`
-  width: calc(100% - 2.4rem); // Mesmo ajuste
-  margin: 0 1.2rem;
-  padding: 0.8rem 1rem;
+  width: 100%;; // Mesmo ajuste
+  margin: 0;
+  padding: 0.8rem;
   border: 2px solid ${({ theme }) => theme.primary};
   border-radius: 10px;
   background: transparent;
@@ -304,6 +321,16 @@ const SubmitButton = styled(motion.button)`
 
   &:active {
     transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: linear-gradient(
+      45deg,
+      ${({ theme }) => theme.primary}80,
+      ${({ theme }) => theme.secondary}80
+    );
   }
 `;
 
@@ -385,6 +412,8 @@ const QRCard = styled.div`
 
 
 const PreviewSection = styled.div`
+  position: relative;
+  padding-bottom: 15px;
   background: ${({ theme }) => theme.cardBg};
   border-radius: 10px;
   padding: 1.5rem;
@@ -404,6 +433,8 @@ const PreviewSection = styled.div`
 const TypewriterText = styled.span`
   border-right: 2px solid;
   animation: typing 1s steps(40) infinite;
+  display: inline-block; /* Adicionado */
+  max-width: 100%; /* Adicionado */
   
   @keyframes typing {
     from { width: 0 }
@@ -414,7 +445,7 @@ const TypewriterText = styled.span`
 const Contact = () => {
   const theme = useTheme();
   const [githubStats, setGithubStats] = useState({});
-  const [contributions, setContributions] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -474,17 +505,19 @@ const Contact = () => {
   // Envio do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-    emailjs.send(
-      'service_a6x3irk', // Service ID
-      'template_5sk97s6', // Template ID
-      {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message
-      },
-      '5FQDSyT8YPY282Ypm' // User ID
-    )
+    emailjs
+      .send(
+        'service_a6x3irk', // Service ID
+        'template_5sk97s6', // Template ID
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        '5FQDSyT8YPY282Ypm' // User ID
+      )
       .then((response) => {
         console.log('Email enviado!', response.status, response.text);
         showConfetti();
@@ -492,6 +525,9 @@ const Contact = () => {
       })
       .catch((err) => {
         console.error('Falha no envio:', err);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
@@ -524,9 +560,11 @@ const Contact = () => {
         {/* Card LinkedIn */}
         <SocialCard whileHover={{ y: -5 }}>
           <h2><FontAwesomeIcon icon={faLinkedin} /> LinkedIn</h2>
-          <StatItem icon={faBriefcase} value="Full Stack Developer" />
-          <StatItem icon={faUserFriends} value="20+ Conexões" />
-          <StatItem icon={faCertificate} value="5 Certificados" />
+          <div className="stats-grid">
+            <StatItem icon={faBriefcase} value="Full Stack" label="Área de atuação" />
+            <StatItem icon={faUserFriends} value="20+" label="Conexões" />
+            <StatItem icon={faCertificate} value="5" label="Certificados" />
+          </div>
           <LinkEstilizado
             href="https://www.linkedin.com/in/l%C3%ADvio-santos-a1965b264/"
             target="_blank"
@@ -630,9 +668,19 @@ const Contact = () => {
             type="submit"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            disabled={isSubmitting}
           >
-            <FontAwesomeIcon icon={faPaperPlane} />
-            Enviar Mensagem
+            {isSubmitting ? (
+              <>
+                <FontAwesomeIcon icon={faSpinner} spin />
+                Enviando...
+              </>
+            ) : (
+              <>
+                <FontAwesomeIcon icon={faPaperPlane} />
+                Enviar Mensagem
+              </>
+            )}
           </SubmitButton>
         </ContactForm>
 
@@ -643,7 +691,15 @@ const Contact = () => {
           <p><strong>Email:</strong> {formData.email || '[seu@email.com]'}</p>
           <p><strong>Mensagem:</strong></p>
           <div className="message-preview">
-            {formData.message || <TypewriterText>|</TypewriterText> || (
+            {formData.message ? (
+              <div style={{
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-word',
+                overflowWrap: 'break-word'
+              }}>
+                {formData.message}
+              </div>
+            ) : (
               <span className="placeholder">
                 Sua mensagem aparecerá aqui...
               </span>
@@ -657,11 +713,36 @@ const Contact = () => {
 
 // Componente auxiliar para estatísticas
 const StatItem = ({ icon, value, label }) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', margin: '1rem 0' }}>
-    <FontAwesomeIcon icon={icon} size="lg" />
-    <div>
-      <h3>{value}</h3>
-      {label && <p style={{ margin: 0, fontSize: '0.9rem' }}>{label}</p>}
+  <div style={{ 
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    margin: '0.5rem 0',
+    width: '100%'
+  }}>
+    <FontAwesomeIcon 
+      icon={icon} 
+      size="lg" 
+      style={{ 
+        width: '24px',
+        textAlign: 'center',
+        color: '#2ecc71' // Cor igual ao GitHub
+      }}
+    />
+    <div style={{ flex: 1 }}>
+      <div style={{ 
+        fontSize: '1.4rem',
+        fontWeight: '600',
+        lineHeight: '1.2',
+        color: '#fff' // Texto branco igual ao GitHub
+      }}>
+        {value}
+      </div>
+      {label && <div style={{ 
+        fontSize: '0.85rem',
+        opacity: 0.8,
+        color: '#888' // Cor da label igual ao GitHub
+      }}>{label}</div>}
     </div>
   </div>
 );

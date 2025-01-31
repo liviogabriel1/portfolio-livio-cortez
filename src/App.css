@@ -48,6 +48,29 @@
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   min-height: 100px;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  word-break: break-all; /* Alterado para quebrar qualquer caractere */
+  hyphens: none;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.message-preview div {
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.message-preview br {
+  display: none; /* Remove quebras de linha extras */
+}
+.message-preview .placeholder {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
 
 .placeholder {
