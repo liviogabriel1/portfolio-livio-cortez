@@ -1,10 +1,10 @@
-Portfolio - Lívio Gabriel Cortez Marinho Santos
+# Portfolio Profissional
 
 Um projeto de portfólio desenvolvido com tecnologias modernas para destacar habilidades e projetos. Ele é responsivo, dinâmico e conta com diversas integrações para uma experiência rica.
 
 🚀 Tecnologias Utilizadas
 
-Este projeto foi desenvolvido com as seguintes tecnologias e ferramentas:
+# Este projeto foi desenvolvido com as seguintes tecnologias e ferramentas:
 
 React (biblioteca para interfaces de usuário)
 
@@ -28,7 +28,7 @@ nginx (Servir o site em produção)
 
 📦 Dependências
 
-Principais Dependências:
+# Principais Dependências:
 
 react, react-dom: Para construir a interface do usuário
 
@@ -52,7 +52,7 @@ eslint: Para linting de código
 
 📂 Estrutura do Projeto
 
-A estrutura básica do projeto é:
+# A estrutura básica do projeto é:
 
 meu-portfolio/
 ├── src/
@@ -68,20 +68,20 @@ meu-portfolio/
 
 🛠️ Como Instalar e Executar o Projeto
 
-Pré-requisitos
+# Pré-requisitos
 
 Node.js e npm ou yarn
 
 Docker (para produção)
 
-Passos
+# Passos
 
 Clone o repositório:
 
 git clone <URL_DO_REPOSITORIO>
 cd meu-portfolio
 
-Instale as dependências:
+# Instale as dependências:
 
 npm install
 # ou
@@ -116,7 +116,7 @@ Integração com APIs externas
 
 ✨ Autor
 
-Desenvolvido por [Seu Nome].
+Desenvolvido por [Lívio Gabriel Cortez Marinho Santos].
 
 📝 Licença
 
