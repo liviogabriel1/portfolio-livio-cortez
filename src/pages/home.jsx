@@ -93,7 +93,7 @@ const Home = () => {
             transition={{ delay: 0.3 }}
             style={{ fontSize: '2.5rem', marginBottom: '1rem' }}
           >
-            Olá, eu sou <HighlightText>Lívio Gabriel</HighlightText>
+            Olá, eu sou <HighlightText>Lívio Cortez</HighlightText>
           </motion.h1>
 
           <motion.p
