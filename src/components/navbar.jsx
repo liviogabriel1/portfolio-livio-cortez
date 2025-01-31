@@ -1,7 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import { FiMenu, FiX } from 'react-icons/fi';
+import { useState } from 'react';
 
 const rgbaHex = (hex, alpha) => {
   const r = parseInt(hex.slice(1, 3), 16);
@@ -30,29 +32,90 @@ const ToggleButton = styled(motion.button)`
   }
 `;
 
+const MobileMenuButton = styled(motion.button)`
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.text};
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: none;
+  padding: 0.5rem;
+
+  @media (max-width: 768px) {
+    display: block;
+    order: 2;
+  }
+`;
+
 const Nav = styled.nav`
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  align-items: center;
+  padding: 1rem 2rem;
   background: ${({ theme }) => theme.cardBg};
   color: ${({ theme }) => theme.text};
-  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid ${({ theme }) => rgbaHex(theme.text, 0.1)};
+  width: 100%; // Garante largura total
+  box-sizing: border-box; // Mantém padding interno sem overflow
 
   @media (max-width: 768px) {
     flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 1rem;
-    
+    gap: 1rem;
+    padding: 1rem 1rem;
+    width: calc(100% + 2rem);
+    margin: -15px -1rem;
+    justify-content: space-between; // Alinhamento estratégico
+
     ${ToggleButton} {
-      position: static;
       order: 1;
+      margin: 0;
+      flex-shrink: 0; // Impede redução de tamanho
     }
+
+    // Ajuste específico para os links
+    a {
+      flex: 1 1 auto;
+      min-width: 45%; // Garante quebra em 2 colunas
+      text-align: center;
+      box-sizing: border-box;
+    }
+  }
+
+  @media (max-width: 480px) {
+    gap: 0.5rem;
+    padding: 0.8rem;
+    margin: -7px -0.8rem;
+    width: calc(100% + 1.6rem);
+
+    a {
+      min-width: 40%; // Ajuste fino para telas menores
+      font-size: 0.85rem;
+      padding: 0.5rem !important;
+    }
+  }
+`;
+
+const NavLinksContainer = styled(motion.div)`
+  display: flex;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${({ theme }) => theme.cardBg};
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    z-index: 99;
+    gap: 2rem;
+    overflow-y: auto;
   }
 `;
 
@@ -112,44 +175,64 @@ const LanguageSwitcher = styled(motion.div)`
 const Navbar = ({ toggleTheme, isDarkMode }) => {
   const location = useLocation();
   const { i18n } = useTranslation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navLinks = [
+    { to: "/", label: "Início" },
+    { to: "/about", label: "Sobre" },
+    { to: "/projects", label: "Projetos" },
+    { to: "/contact", label: "Contato" }
+  ];
+
   return (
     <Nav>
-      <NavLink
-        to="/"
-        $isActive={location.pathname === '/'}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+      {/* Botão do menu hamburguer (mobile apenas) */}
+      <MobileMenuButton
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        whileTap={{ scale: 0.9 }}
       >
-        Início
-      </NavLink>
+        {isMenuOpen ? <FiX /> : <FiMenu />}
+      </MobileMenuButton>
 
-      <NavLink
-        to="/about"
-        $isActive={location.pathname === '/about'}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Sobre
-      </NavLink>
+      {/* Links para desktop (sempre visíveis) */}
+      <DesktopLinks>
+        {navLinks.map((link) => (
+          <NavLink
+            key={link.to}
+            to={link.to}
+            $isActive={location.pathname === link.to}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {link.label}
+          </NavLink>
+        ))}
+      </DesktopLinks>
 
-      <NavLink
-        to="/projects"
-        $isActive={location.pathname === '/projects'}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Projetos
-      </NavLink>
+      {/* Menu mobile (animado) */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <MobileMenu
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                $isActive={location.pathname === link.to}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </MobileMenu>
+        )}
+      </AnimatePresence>
 
-      <NavLink
-        to="/contact"
-        $isActive={location.pathname === '/contact'}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Contato
-      </NavLink>
-
+      {/* Botão do tema */}
       <ToggleButton
         onClick={toggleTheme}
         whileHover={{ scale: 1.1 }}
@@ -160,5 +243,32 @@ const Navbar = ({ toggleTheme, isDarkMode }) => {
     </Nav>
   );
 };
+
+// Novos componentes estilizados
+const DesktopLinks = styled.div`
+  display: flex;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled(motion.div)`
+  display: none;
+  
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: -1rem;
+    right: -1rem;
+    background: ${({ theme }) => theme.cardBg};
+    padding: 1rem 2rem;
+    gap: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+`;
 
 export default Navbar;

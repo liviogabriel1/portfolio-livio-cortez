@@ -21,20 +21,27 @@ const Container = styled(motion.div)`
   padding: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
+`;
+
+// Social Area
+const SocialGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 1fr; // Força linhas com mesma altura
+  gap: 2rem;
+  margin-top: 2rem;
+  align-items: stretch; // Estica os itens verticalmente
   
   @media (max-width: 768px) {
-    padding: 1rem;
-    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 1rem;
     
-    > * {
-      width: 100%;
-      margin-left: 0;
-      margin-right: 0;
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 `;
 
-// SocialCard deve ser declarado antes do SocialGrid
 const SocialCard = styled(motion.div)`
   background: ${({ theme }) => theme.cardBg};
   border-radius: 20px;
@@ -43,7 +50,7 @@ const SocialCard = styled(motion.div)`
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  min-height: 320px;
+  min-height: 320px; // Altura mínima fixa
   border: 1px solid ${({ theme }) => theme.primary}20;
   justify-content: space-between;
 
@@ -61,64 +68,16 @@ const SocialCard = styled(motion.div)`
   .stats-grid {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
-    margin: 1.5rem 0;
+    gap: 1.2rem; // Aumentado de 0.8rem
+    margin: 1.5rem 0; // Aumentado de 1rem
     width: 100%;
   }
 
   @media (max-width: 1200px) and (min-width: 1025px) {
-    min-height: 350px;
+    min-height: 350px; // Ajuste para telas médias
   }
-`;
-
-const QRCard = styled.div`
-  background: ${({ theme }) => theme.cardBg};
-  border-radius: 20px;
-  padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  min-height: 380px;
-  border: 1px solid ${({ theme }) => theme.primary}20;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.05);
-
-  h2 {
-    font-size: 1.8rem;
-    color: ${({ theme }) => theme.primary};
-  }
-
-  @media (max-width: 768px) {
-    min-height: 300px;
-    padding: 1.5rem;
-    
-    h2 {
-      font-size: 1.4rem;
-    }
-  }
-`;
-
-// SocialGrid declarado após os componentes que usa
-const SocialGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-rows: 1fr;
-  gap: 2rem;
-  margin-top: 2rem;
-  align-items: stretch;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    
-    ${SocialCard}, ${QRCard} {
-      width: 100%;
-      min-height: auto;
-      margin: 0;
-    }
-  }
-`;
+  `;
+// End Social Area
 
 const LinkEstilizado = styled.a`
   color: ${({ theme }) => theme.primary};
@@ -164,11 +123,6 @@ const LinkEstilizado = styled.a`
       font-size: 1.2rem;
     }
   }
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    padding: 0.5rem;
-  }
 `;
 
 const Section = styled(motion.div)`
@@ -181,8 +135,8 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
 // Contact Area
 const ContactFormContainer = styled(Section)`
-background: linear-gradient(
-  145deg,
+  background: linear-gradient(
+    145deg,
     ${({ theme }) => theme.cardBg} 0%,
     ${({ theme }) => theme.body} 100%
   );
@@ -190,18 +144,27 @@ background: linear-gradient(
   width: 100%;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  max-width: 500px; // Reduzido de 800px
-  margin: 1.5rem auto; // Reduzido de 2rem
-  padding: 1.5rem; // Reduzido de 2rem
-  transform: perspective(800px) rotateX(4deg); // Efeito mais sutil
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  transform: perspective(800px) rotateX(4deg);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
   @media (max-width: 768px) {
+    /* Estilo igual aos cards do GitHub/LinkedIn */
+    background: ${({ theme }) => theme.cardBg};
+    border: 1px solid ${({ theme }) => theme.primary}20;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin: 1rem -24px;
     max-width: 100%;
-    margin: 1rem 0;
-    padding: 1rem;
-    border-radius: 0;
-    box-shadow: none;
+    transform: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
   }
 `;
 
@@ -438,6 +401,25 @@ const QRCodeContainer = styled.div`
   border: 2px solid ${({ theme }) => theme.primary};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // Sombras mais suaves
 `;
+
+const QRCard = styled.div`
+  background: ${({ theme }) => theme.cardBg};
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: 380px;
+  border: 1px solid ${({ theme }) => theme.primary}20;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+
+  h2 {
+    font-size: 1.8rem;
+    color: ${({ theme }) => theme.primary};
+  }
+`;
 // End QRCode Area
 
 
@@ -591,7 +573,7 @@ const Contact = () => {
         <SocialCard whileHover={{ y: -5 }}>
           <h2><FontAwesomeIcon icon={faLinkedin} /> LinkedIn</h2>
           <div className="stats-grid">
-            <StatItem icon={faBriefcase} value="Full Stack" label="Área de atuação" />
+            <StatItem icon={faBriefcase} value="Full Stack" label="Posição" />
             <StatItem icon={faUserFriends} value="20+" label="Conexões" />
             <StatItem icon={faCertificate} value="5" label="Certificados" />
           </div>
@@ -742,43 +724,39 @@ const Contact = () => {
 }
 
 // Componente auxiliar para estatísticas
-const StatItem = ({ icon, value, label }) => {
-  const theme = useTheme(); // Adicione esta linha
-  
-  return (
-    <div style={{ 
-      display: 'flex',
-      alignItems: 'center',
-      gap: '1rem',
-      margin: '0.5rem 0',
-      width: '100%'
-    }}>
-      <FontAwesomeIcon 
-        icon={icon} 
-        size="lg" 
-        style={{ 
-          width: '24px',
-          textAlign: 'center',
-          color: theme.primary // Usando a cor primária do tema
-        }}
-      />
-      <div style={{ flex: 1 }}>
-        <div style={{ 
-          fontSize: '1.4rem',
-          fontWeight: '600',
-          lineHeight: '1.2',
-          color: theme.text // Usando a cor de texto do tema
-        }}>
-          {value}
-        </div>
-        {label && <div style={{ 
-          fontSize: '0.85rem',
-          opacity: 0.8,
-          color: theme.textSecondary // Usando cor secundária do tema
-        }}>{label}</div>}
+const StatItem = ({ icon, value, label }) => (
+  <div style={{
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    margin: '0.5rem 0',
+    width: '100%'
+  }}>
+    <FontAwesomeIcon
+      icon={icon}
+      size="lg"
+      style={{
+        width: '24px',
+        textAlign: 'center',
+        color: '#2ecc71' // Cor igual ao GitHub
+      }}
+    />
+    <div style={{ flex: 1 }}>
+      <div style={{
+        fontSize: '1.4rem',
+        fontWeight: '600',
+        lineHeight: '1.2',
+        color: '#fff' // Texto branco igual ao GitHub
+      }}>
+        {value}
       </div>
+      {label && <div style={{
+        fontSize: '0.85rem',
+        opacity: 0.8,
+        color: '#888' // Cor da label igual ao GitHub
+      }}>{label}</div>}
     </div>
-  );
-};
+  </div>
+);
 
 export default Contact;
