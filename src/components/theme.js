@@ -1,16 +1,17 @@
 export const lightTheme = {
     body: '#f9f9f9',
-    text: '#2A2D3E',
-    primary: '#6C63FF',
+    text: '#2A2D3E', // Texto mais escuro
+    primary: '#5B51E8', // Cor mais escura
     secondary: '#FF6584',
-    cardBg: 'rgba(255, 255, 255, 0.95)',
+    cardBg: 'rgba(255, 255, 255, 0.98)',
     particleColor: 'rgba(108, 99, 255, 0.1)',
     navActive: '#6C63FF',
     navInactive: '#2A2D3E',
     inputBg: 'rgba(255, 255, 255, 0.9)',
     toggleBg: '#e9ecef',
     cardBorder: 'rgba(0, 0, 0, 0.1)',
-    buttonHover: '#5a52e6'
+    buttonHover: '#5a52e6',
+    textSecondary: '#666666', // Adicione esta linha
 };
 
 export const darkTheme = {
@@ -25,5 +26,6 @@ export const darkTheme = {
     inputBg: 'rgba(0, 0, 0, 0.25)',
     toggleBg: '#2c3e50',
     cardBorder: 'rgba(255, 255, 255, 0.1)',
-    buttonHover: '#6d65ff'
+    buttonHover: '#6d65ff',
+    textSecondary: '#AAAAAA', // Adicione esta linha
 };

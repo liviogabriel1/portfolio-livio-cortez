@@ -46,7 +46,7 @@ const SocialCard = styled(motion.div)`
   background: ${({ theme }) => theme.cardBg};
   border-radius: 20px;
   padding: 2rem;
-  color: inherit;
+  color: ${({ theme }) => theme.text};
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -71,6 +71,10 @@ const SocialCard = styled(motion.div)`
     gap: 1.2rem; // Aumentado de 0.8rem
     margin: 1.5rem 0; // Aumentado de 1rem
     width: 100%;
+    background: ${({ theme }) => theme.cardBg};
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1rem 0;
   }
 
   @media (max-width: 1200px) and (min-width: 1025px) {
@@ -738,7 +742,7 @@ const StatItem = ({ icon, value, label }) => (
       style={{
         width: '24px',
         textAlign: 'center',
-        color: '#2ecc71' // Cor igual ao GitHub
+        color: ({ theme }) => theme.primary // Corrigido para usar o tema
       }}
     />
     <div style={{ flex: 1 }}>
@@ -746,14 +750,14 @@ const StatItem = ({ icon, value, label }) => (
         fontSize: '1.4rem',
         fontWeight: '600',
         lineHeight: '1.2',
-        color: '#fff' // Texto branco igual ao GitHub
+        color: ({ theme }) => theme.text // Corrigido para usar o tema
       }}>
         {value}
       </div>
       {label && <div style={{
         fontSize: '0.85rem',
         opacity: 0.8,
-        color: '#888' // Cor da label igual ao GitHub
+        color: ({ theme }) => theme.textSecondary // Adicionado cor secundária
       }}>{label}</div>}
     </div>
   </div>
