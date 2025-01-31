@@ -2,9 +2,9 @@
 
 Um projeto de portfólio desenvolvido com tecnologias modernas para destacar habilidades e projetos. Ele é responsivo, dinâmico e conta com diversas integrações para uma experiência rica.
 
-🚀 Tecnologias Utilizadas
+# 🚀 Tecnologias Utilizadas
 
-# Este projeto foi desenvolvido com as seguintes tecnologias e ferramentas:
+Este projeto foi desenvolvido com as seguintes tecnologias e ferramentas:
 
 React (biblioteca para interfaces de usuário)
 
@@ -26,9 +26,9 @@ Docker (Containerização para ambientes consistentes)
 
 nginx (Servir o site em produção)
 
-📦 Dependências
+# 📦 Dependências
 
-# Principais Dependências:
+Principais Dependências:
 
 react, react-dom: Para construir a interface do usuário
 
@@ -50,9 +50,9 @@ eslint: Para linting de código
 
 @vitejs/plugin-react: Para suporte ao React no Vite
 
-📂 Estrutura do Projeto
+# 📂 Estrutura do Projeto
 
-# A estrutura básica do projeto é:
+A estrutura básica do projeto é:
 
 meu-portfolio/
 ├── src/
@@ -66,9 +66,9 @@ meu-portfolio/
 ├── vite.config.ts     # Configuração do Vite
 └── README.md          # Documentação
 
-🛠️ Como Instalar e Executar o Projeto
+# 🛠️ Como Instalar e Executar o Projeto
 
-# Pré-requisitos
+Pré-requisitos
 
 Node.js e npm ou yarn
 
@@ -104,7 +104,7 @@ Utilize Docker para rodar em produção (opcional):
 docker build -t meu-portfolio .
 docker run -p 8080:80 meu-portfolio
 
-🌐 Funcionalidades Principais
+# 🌐 Funcionalidades Principais
 
 Interface responsiva e moderna
 
@@ -114,10 +114,10 @@ Suporte para internacionalização (i18n)
 
 Integração com APIs externas
 
-✨ Autor
+# ✨ Autor
 
 Desenvolvido por [Lívio Gabriel Cortez Marinho Santos].
 
-📝 Licença
+# 📝 Licença
 
 Este projeto está sob a licença MIT. Sinta-se livre para utilizá-lo e adaptá-lo.
