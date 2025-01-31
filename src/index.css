@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #6C63FF;
+  --secondary: #FF6584;
+  --dark: #2A2D3E;
+  --light: #F8F9FA;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif; /* Agora a fonte está disponível */
+  background: linear-gradient(45deg, var(--light) 0%, #e6e6ff 100%);
+  color: var(--dark);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#tsparticles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Garanta que o conteúdo fique acima das partículas */
+nav, .container, .project-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

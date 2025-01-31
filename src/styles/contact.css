@@ -1,0 +1,328 @@
+:root {
+    --card-bg: rgba(25, 25, 35, 0.95);
+    /* Preto fosco com transparência */
+    --card-border: rgba(46, 204, 113, 0.15);
+    /* Borda esverdeada suave */
+    --card-blur: blur(12px);
+    /* Efeito de desfoque */
+}
+
+/* Contact.css */
+.contact-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+    align-items: stretch;
+}
+
+@media (max-width: 768px) {
+    .social-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+.social-card {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 20px;
+    padding: 2.5rem;
+    color: inherit;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    justify-content: space-between;
+    backdrop-filter: var(--card-blur);
+    -webkit-backdrop-filter: var(--card-blur);
+    /* Para Safari */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+.social-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.social-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.styled-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    display: block;
+    text-align: right;
+    position: relative;
+    align-self: flex-end;
+}
+
+.styled-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.styled-link:hover::after {
+    width: 100%;
+}
+
+.section {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form {
+    display: grid;
+    box-sizing: border-box;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background: var(--input-bg) !important;
+    padding: 1rem;
+    border: 2px solid var(--card-border) !important;
+    border-radius: 12px;
+    background: var(--input-bg);
+    color: var(--text);
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 8px rgba(46, 204, 113, 0.3);
+}
+
+.contact-form button {
+    padding: 1.2rem;
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.contact-form button:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+.contact-form-container {
+    background: var(--card-bg) !important;
+    backdrop-filter: var(--card-blur);
+    border: 1px solid var(--card-border) !important;
+    border-radius: 15px;
+    -webkit-backdrop-filter: var(--card-blur);
+    max-width: 600px;
+    margin: 1.5rem auto;
+    padding: 2rem;
+    transform: perspective(800px) rotateX(4deg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.floating-label {
+    position: absolute;
+    left: 2.2rem;
+    top: 1rem;
+    font-size: 0.9rem;
+    color: #888;
+    background: var(--card-bg);
+    padding: 0 0.5rem;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.floating-label.has-value {
+    top: -0.7rem;
+    font-size: 0.75rem;
+}
+
+.styled-input {
+    width: calc(100% - 2.4rem);
+    margin: 0 1.2rem;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.styled-input:focus+.floating-label,
+.styled-textarea:focus+.floating-label {
+    top: -0.8rem;
+    font-size: 0.8rem;
+    color: var(--primary);
+}
+
+.styled-textarea {
+    width: calc(100% - 2.4rem);
+    margin: 0 1.2rem;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.95rem;
+    min-height: 120px;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.submit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s;
+}
+
+.submit-button:hover::before {
+    left: 100%;
+}
+
+.download-button {
+    padding: 1.2rem 2rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.qr-code-container {
+    text-align: center;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 10px;
+    display: inline-block;
+    margin: auto 0;
+    border: 2px solid var(--primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.qr-card {
+    background: var(--card-bg) !important;
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    min-height: 380px;
+    border: 1px solid var(--card-border) !important;
+    backdrop-filter: var(--card-blur);
+    -webkit-backdrop-filter: var(--card-blur);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+.mastery-chart {
+    background: var(--card-bg) !important;
+}
+
+.preview-section {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1.5rem;
+    top: 1rem;
+    color: var(--primary);
+    opacity: 0.8;
+    z-index: 1;
+    font-size: 0.9rem;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+.typewriter-text {
+    border-right: 2px solid;
+    animation: typing 1s steps(40) infinite;
+}
