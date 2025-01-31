@@ -24,6 +24,16 @@ const HeroSection = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -37,6 +47,10 @@ const SkillsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   margin: 2rem 0;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const SkillCard = styled(motion.div)`
@@ -72,6 +86,15 @@ const ContactButton = styled(motion.a).attrs({
 
   &:hover {
     background: ${({ theme }) => theme.buttonHover};
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    
+    svg {
+      width: 16px;
+    }
   }
 `;
 

@@ -5,6 +5,18 @@ const Container = styled(motion.div)`
   padding: 2rem;
   max-width: 800px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    
+    h1 {
+      font-size: 1.8rem;
+    }
+    
+    p {
+      font-size: 0.9rem;
+    }
+  }
 `;
 
 const ExperienceItem = styled(motion.div)`
@@ -36,6 +48,18 @@ const ExperienceItem = styled(motion.div)`
     display: block;
     margin-top: 0.5rem;
     opacity: 0.8;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+    
+    h3 {
+      font-size: 1rem;
+    }
+    
+    p {
+      font-size: 0.8rem;
+    }
   }
 `;
 

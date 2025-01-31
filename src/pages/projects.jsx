@@ -7,13 +7,25 @@ const Container = styled(motion.div)`
   max-width: 1400px;
   margin: 0 auto;
   min-height: 100vh;
-`;
 
+  @media (max-width: 768px) {
+    padding: 1rem;
+    
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+`;
 const ProjectGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
   margin-top: 3rem;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -72,6 +84,11 @@ const Description = styled.p`
   line-height: 1.6;
   margin-bottom: 1.5rem;
   min-height: 80px;
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    min-height: auto;
+  }
 `;
 
 const TechStack = styled.div`

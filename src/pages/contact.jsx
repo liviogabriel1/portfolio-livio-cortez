@@ -34,9 +34,13 @@ const SocialGrid = styled.div`
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1rem;
+    
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
-  `;
+`;
 
 const SocialCard = styled(motion.div)`
   background: ${({ theme }) => theme.cardBg};
@@ -95,6 +99,15 @@ const LinkEstilizado = styled.a`
   &:hover::after {
     width: 100%;
   }
+
+  @media (max-width: 480px) {
+    min-height: auto;
+    padding: 1.5rem;
+    
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 const Section = styled(motion.div)`
@@ -119,12 +132,17 @@ background: linear-gradient(
   padding: 1.5rem; // Reduzido de 2rem
   transform: perspective(800px) rotateX(4deg); // Efeito mais sutil
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  `;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    transform: none;
+  }
+`;
 
 const FormGroup = styled.div`
   position: relative;
   margin-bottom: 2rem;
-  `;
+`;
 
 const ContactForm = styled.form`
     display: grid;
@@ -169,7 +187,7 @@ const ContactForm = styled.form`
         opacity: 0.9;
       }
     }
-  `;
+`;
 // End Contact Area
 
 const FloatingLabel = styled.label`

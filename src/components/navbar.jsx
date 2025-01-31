@@ -10,6 +10,26 @@ const rgbaHex = (hex, alpha) => {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
+const ToggleButton = styled(motion.button)`
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.text};
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @media (max-width: 768px) {
+    position: static;
+    order: 1;
+  }
+`;
+
 const Nav = styled.nav`
   display: flex;
   justify-content: center;
@@ -23,6 +43,17 @@ const Nav = styled.nav`
   z-index: 100;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid ${({ theme }) => rgbaHex(theme.text, 0.1)};
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    
+    ${ToggleButton} {
+      position: static;
+      order: 1;
+    }
+  }
 `;
 
 const NavLink = motion(styled(Link)`
@@ -57,22 +88,12 @@ const NavLink = motion(styled(Link)`
     !$isActive && `linear-gradient(45deg, ${theme.primary}20, ${theme.secondary}20)`};
     color: ${({ theme, $isActive }) => $isActive ? theme.primary : theme.text};
   }
-`);
 
-const ToggleButton = styled(motion.button)`
-  background: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.text};
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  position: absolute;
-  right: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+`);
 
 const LanguageSwitcher = styled(motion.div)`
   position: relative;

@@ -15,7 +15,14 @@ const Container = styled.div`
   gap: 2rem;
   justify-content: center;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
 `;
+
 
 const SocialCard = styled(motion.a)`
   background: ${({ theme }) => theme.cardBg};
@@ -38,6 +45,12 @@ const SocialCard = styled(motion.a)`
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0px); }
+  }
+  
+  @media (max-width: 480px) {
+    width: 100%;
+    min-height: 180px;
+    padding: 1rem;
   }
 `;
 
