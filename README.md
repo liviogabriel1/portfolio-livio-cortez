@@ -18,12 +18,6 @@ TypeScript (JavaScript tipado)
 
 Framer Motion (Animações fluidas)
 
-Axios (Requisições HTTP)
-
-i18next (Internacionalização)
-
-Docker (Containerização para ambientes consistentes)
-
 nginx (Servir o site em produção)
 
 # 📦 Dependências
@@ -32,11 +26,7 @@ Principais Dependências:
 
 react, react-dom: Para construir a interface do usuário
 
-axios: Para chamadas de API
-
 framer-motion: Para animações
-
-i18next, react-i18next: Para internacionalização
 
 styled-components: Para estilizações dinâmicas
 
@@ -72,8 +62,6 @@ Pré-requisitos
 
 Node.js e npm ou yarn
 
-Docker (para produção)
-
 # Passos
 
 Clone o repositório:
@@ -98,11 +86,6 @@ Para gerar a build de produção:
 npm run build
 # ou
 yarn build
-
-Utilize Docker para rodar em produção (opcional):
-
-docker build -t meu-portfolio .
-docker run -p 8080:80 meu-portfolio
 
 # 🌐 Funcionalidades Principais
 
