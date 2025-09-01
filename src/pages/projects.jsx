@@ -122,6 +122,15 @@ const Links = styled.div`
 
 const projects = [
   {
+    title: "LoL DraftLab",
+    description:
+      "Simulador de draft de LoL com multiplayer (Socket.IO), análise de composição, tutorial guiado e integração com o DDragon (PT-BR).",
+    tech: ["React", "Vite", "TypeScript", "Framer Motion", "Socket.IO", "Express", "Node.js"],
+    preview: "/draftlab-preview.jpg",
+    github: "https://github.com/liviogabriel1/lol-draftlab",
+    demo: "https://lol-draftlab.vercel.app/"
+  },
+  {
     title: "Kenzie Hub",
     description: "Plataforma completa de autenticação e gerenciamento de usuários com validações avançadas e dashboard interativo.",
     tech: ["React", "TypeScript", "ZOD", "Context API"],
@@ -182,7 +191,7 @@ const Projects = () => {
             <Content className="content">
               <Title>{project.title}</Title>
               <Description>{project.description}</Description>
-              
+
               <TechStack>
                 {project.tech.map((tech, i) => (
                   <TechBadge key={i}>{tech}</TechBadge>
@@ -190,17 +199,17 @@ const Projects = () => {
               </TechStack>
 
               <Links>
-                <motion.a 
-                  href={project.github} 
+                <motion.a
+                  href={project.github}
                   target="_blank"
                   whileHover={{ scale: 1.1 }}
                   className="link"
                 >
                   <FiGithub size={24} color="currentColor" />
                 </motion.a>
-                
-                <motion.a 
-                  href={project.demo} 
+
+                <motion.a
+                  href={project.demo}
                   target="_blank"
                   whileHover={{ scale: 1.1 }}
                   className="link"
