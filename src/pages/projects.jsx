@@ -120,6 +120,7 @@ const Links = styled.div`
   }
 `;
 
+// === SOMENTE DraftLab + ShortTrack ===
 const projects = [
   {
     title: "LoL DraftLab",
@@ -131,35 +132,13 @@ const projects = [
     demo: "https://lol-draftlab.vercel.app/"
   },
   {
-    title: "Kenzie Hub",
-    description: "Plataforma completa de autenticação e gerenciamento de usuários com validações avançadas e dashboard interativo.",
-    tech: ["React", "TypeScript", "ZOD", "Context API"],
-    preview: "/kenzie-hub-preview.jpg",
-    demo: "https://kenzie-hub-liviogabriel1.vercel.app/"
-  },
-  {
-    title: "Hamburgueria Virtual",
-    description: "E-commerce dinâmico com carrinho de compras integrado e sistema de busca em tempo real.",
-    tech: ["React", "Styled Components", "Framer Motion", "API"],
-    preview: "/hamburgueria-preview.jpg",
-    github: "https://github.com/liviogabriel1/template-fast-food-website", // Adicione seu link GitHub aqui
-    demo: "https://m3-hamburgueria-kenzie-liviogabriel1-liviogabriel1.vercel.app/"
-  },
-  {
-    title: "Git Search",
-    description: "Buscador de perfis GitHub com visualização detalhada de repositórios e métricas de desenvolvimento.",
-    tech: ["JavaScript", "GitHub API", "Chart.js", "LocalStorage"],
-    preview: "/git-search-preview.jpg",
-    github: "https://github.com/liviogabriel1/gitSearchBase", // Adicione seu link GitHub aqui
-    demo: "https://kenzie-academy-brasil-developers.github.io/gitSearchBase_liviogabriel1/"
-  },
-  {
-    title: "Open Music",
-    description: "Player musical moderno com equalizador visual, temas personalizáveis e controle por gestos.",
-    tech: ["JavaScript", "Web Audio API", "GSAP", "Sass"],
-    preview: "/open-music-preview.jpg",
-    github: "https://github.com/liviogabriel1/open-music-base_liviogabriel1", // Adicione seu link GitHub aqui
-    demo: "https://kenzie-academy-brasil-developers.github.io/open-music-base_liviogabriel1/"
+    title: "ShortTrack",
+    description:
+      "Encurtador de links com analytics (cliques, origem, dispositivo), páginas personalizadas, QR Code, autenticação JWT e painel admin. Monorepo com client (Vite+React+Tailwind) e server (Express+Prisma/SQLite).",
+    tech: ["React", "Vite", "Tailwind", "TypeScript", "Express", "Prisma", "SQLite", "JWT"],
+    preview: "/shorttrack-preview.jpg",
+    github: "https://github.com/liviogabriel1/shorttrack",  // ajuste se seu repo estiver privado/diferente
+    demo: "https://shorttrack.vercel.app/"
   }
 ];
 
@@ -199,23 +178,31 @@ const Projects = () => {
               </TechStack>
 
               <Links>
-                <motion.a
-                  href={project.github}
-                  target="_blank"
-                  whileHover={{ scale: 1.1 }}
-                  className="link"
-                >
-                  <FiGithub size={24} color="currentColor" />
-                </motion.a>
+                {project.github && (
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`GitHub de ${project.title}`}
+                    whileHover={{ scale: 1.1 }}
+                    className="link"
+                  >
+                    <FiGithub size={24} />
+                  </motion.a>
+                )}
 
-                <motion.a
-                  href={project.demo}
-                  target="_blank"
-                  whileHover={{ scale: 1.1 }}
-                  className="link"
-                >
-                  <FiExternalLink size={24} color="currentColor" />
-                </motion.a>
+                {project.demo && (
+                  <motion.a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Demo de ${project.title}`}
+                    whileHover={{ scale: 1.1 }}
+                    className="link"
+                  >
+                    <FiExternalLink size={24} />
+                  </motion.a>
+                )}
               </Links>
             </Content>
           </ProjectCard>

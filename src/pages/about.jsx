@@ -72,7 +72,7 @@ const About = () => {
     >
       <h1>Sobre Mim</h1>
       <p>Meu nome é Lívio Gabriel Cortez Marinho Santos, sou Desenvolvedor Full Stack com experiência em diversas tecnologias modernas.</p>
-      
+
       <ExperienceItem
         whileHover={{ scale: 1.02 }}
         transition={{ type: "spring", stiffness: 300 }}
@@ -87,10 +87,14 @@ const About = () => {
         transition={{ type: "spring", stiffness: 300 }}
       >
         <h3>Experiência Profissional</h3>
-        <p>💼 RSCI - Freelancer (Mar/2023-Mai/2023)<br/>
-        Desenvolvimento Front End com AngularJS, TypeScript e CSS</p>
-        <p>📺 TV Sergipe - Estágio Full-Stack (Dez/2024-Jun/2025)<br/>
-        Atuação com Tailwind, Docker, MySQL e Postgres em ambiente ágil</p>
+        <p>💼 RSCI - Freelancer (Mar/2023-Mai/2023)<br />
+          Desenvolvimento Front End com AngularJS, TypeScript e CSS</p>
+
+        <p>📺 TV Sergipe - Estágio Full-Stack (Dez/2024-Jun/2025)<br />
+          Atuação com Tailwind, Docker, MySQL e Postgres em ambiente ágil</p>
+
+        <p>📺 TV Sergipe - Analista de Desenvolvimento de Sistemas Jr. (Ago/2025 - Atualmente)<br />
+          Atuação como desenvolvedor full-stack, dando continuidade à evolução de sistemas e novas demandas internas.</p>
       </ExperienceItem>
     </Container>
   );
