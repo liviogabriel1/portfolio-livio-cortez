@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled(motion.div)`
   padding: 2rem;
@@ -120,36 +121,33 @@ const Links = styled.div`
   }
 `;
 
-// === SOMENTE DraftLab + ShortTrack ===
-const projects = [
-  {
-    title: "LoL DraftLab",
-    description:
-      "Simulador de draft de LoL com multiplayer (Socket.IO), análise de composição, tutorial guiado e integração com o DDragon (PT-BR).",
-    tech: ["React", "Vite", "TypeScript", "Framer Motion", "Socket.IO", "Express", "Node.js"],
-    preview: "/draftlab-preview.jpg",
-    github: "https://github.com/liviogabriel1/lol-draftlab",
-    demo: "https://lol-draftlab.vercel.app/"
-  },
-  {
-    title: "ShortTrack",
-    description:
-      "Encurtador de links com analytics (cliques, origem, dispositivo), páginas personalizadas, QR Code, autenticação JWT e painel admin. Monorepo com client (Vite+React+Tailwind) e server (Express+Prisma/SQLite).",
-    tech: ["React", "Vite", "Tailwind", "TypeScript", "Express", "Prisma", "SQLite", "JWT"],
-    preview: "/shorttrack-preview.jpg",
-    github: "https://github.com/liviogabriel1/shorttrack",  // ajuste se seu repo estiver privado/diferente
-    demo: "https://shorttrack.vercel.app/"
-  }
-];
-
 const Projects = () => {
+  const { t } = useTranslation();
+
+  const projects = [
+    {
+      key: "draftlab",
+      tech: ["React", "Vite", "TypeScript", "Framer Motion", "Socket.IO", "Express", "Node.js"],
+      preview: "/draftlab-preview.jpg",
+      github: "https://github.com/liviogabriel1/lol-draftlab",
+      demo: "https://lol-draftlab.vercel.app/"
+    },
+    {
+      key: "shorttrack",
+      tech: ["React", "Vite", "Tailwind", "TypeScript", "Express", "Prisma", "SQLite", "JWT"],
+      preview: "/shorttrack-preview.jpg",
+      github: "https://github.com/liviogabriel1/shorttrack",
+      demo: "https://shorttrack.vercel.app/"
+    }
+  ];
+
   return (
     <Container
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h1>Projetos Destacados</h1>
+      <h1>{t('projects.heading')}</h1>
       <ProjectGrid>
         {projects.map((project, index) => (
           <ProjectCard
@@ -161,15 +159,15 @@ const Projects = () => {
             <PreviewContainer>
               <PreviewImage
                 src={project.preview}
-                alt={project.title}
+                alt={t(`projects.${project.key}.title`)}
                 className="preview"
                 loading="lazy"
               />
             </PreviewContainer>
 
             <Content className="content">
-              <Title>{project.title}</Title>
-              <Description>{project.description}</Description>
+              <Title>{t(`projects.${project.key}.title`)}</Title>
+              <Description>{t(`projects.${project.key}.description`)}</Description>
 
               <TechStack>
                 {project.tech.map((tech, i) => (
@@ -183,7 +181,7 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={`GitHub de ${project.title}`}
+                    aria-label={`GitHub - ${t(`projects.${project.key}.title`)}`}
                     whileHover={{ scale: 1.1 }}
                     className="link"
                   >
@@ -196,7 +194,7 @@ const Projects = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={`Demo de ${project.title}`}
+                    aria-label={`Demo - ${t(`projects.${project.key}.title`)}`}
                     whileHover={{ scale: 1.1 }}
                     className="link"
                   >

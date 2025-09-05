@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled(motion.div)`
   padding: 2rem;
@@ -64,37 +65,36 @@ const ExperienceItem = styled(motion.div)`
 `;
 
 const About = () => {
+  const { t } = useTranslation();
+
   return (
     <Container
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <h1>Sobre Mim</h1>
-      <p>Meu nome é Lívio Gabriel Cortez Marinho Santos, sou Desenvolvedor Full Stack com experiência em diversas tecnologias modernas.</p>
+      <h1>{t('about.heading')}</h1>
+      <p style={{ opacity: 0.85 }}>
+        {t('about.intro', { fullName: 'Lívio Gabriel Cortez Marinho Santos' })}
+      </p>
 
       <ExperienceItem
         whileHover={{ scale: 1.02 }}
-        transition={{ type: "spring", stiffness: 300 }}
+        transition={{ type: 'spring', stiffness: 300 }}
       >
-        <h3>Formação Acadêmica</h3>
-        <p>🎓 Análise e Desenvolvimento de Sistemas - Estácio (Fev/2024 - Jun/2026)</p>
-        <p>🚀 Desenvolvimento Web Full-Stack - Kenzie Academy Brasil (Mar/2023 - Mai/2024)</p>
+        <h3>{t('about.edu.title')}</h3>
+        <p style={{ whiteSpace: 'pre-wrap' }}>{t('about.edu.estacio')}</p>
+        <p style={{ whiteSpace: 'pre-wrap' }}>{t('about.edu.kenzie')}</p>
       </ExperienceItem>
 
       <ExperienceItem
         whileHover={{ scale: 1.02 }}
-        transition={{ type: "spring", stiffness: 300 }}
+        transition={{ type: 'spring', stiffness: 300 }}
       >
-        <h3>Experiência Profissional</h3>
-        <p>💼 RSCI - Freelancer (Mar/2023-Mai/2023)<br />
-          Desenvolvimento Front End com AngularJS, TypeScript e CSS</p>
-
-        <p>📺 TV Sergipe - Estágio Full-Stack (Dez/2024-Jun/2025)<br />
-          Atuação com Tailwind, Docker, MySQL e Postgres em ambiente ágil</p>
-
-        <p>📺 TV Sergipe - Analista de Desenvolvimento de Sistemas Jr. (Ago/2025 - Atualmente)<br />
-          Atuação como desenvolvedor full-stack, dando continuidade à evolução de sistemas e novas demandas internas.</p>
+        <h3>{t('about.exp.title')}</h3>
+        <p style={{ whiteSpace: 'pre-wrap' }}>{t('about.exp.rSCI')}</p>
+        <p style={{ whiteSpace: 'pre-wrap' }}>{t('about.exp.tv.estagio')}</p>
+        <p style={{ whiteSpace: 'pre-wrap' }}>{t('about.exp.tv.analista')}</p>
       </ExperienceItem>
     </Container>
   );

@@ -16,6 +16,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { QRCodeSVG } from 'qrcode.react';
 import emailjs from 'emailjs-com';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled(motion.div)`
   padding: 1.5rem;
@@ -27,10 +28,10 @@ const Container = styled(motion.div)`
 const SocialGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-rows: 1fr; // Força linhas com mesma altura
+  grid-auto-rows: 1fr;
   gap: 2rem;
   margin-top: 2rem;
-  align-items: stretch; // Estica os itens verticalmente
+  align-items: stretch;
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -50,7 +51,7 @@ const SocialCard = styled(motion.div)`
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  min-height: 320px; // Altura mínima fixa
+  min-height: 320px;
   border: 1px solid ${({ theme }) => theme.primary}20;
   justify-content: space-between;
 
@@ -68,8 +69,8 @@ const SocialCard = styled(motion.div)`
   .stats-grid {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem; // Aumentado de 0.8rem
-    margin: 1.5rem 0; // Aumentado de 1rem
+    gap: 1.2rem;
+    margin: 1.5rem 0;
     width: 100%;
     background: ${({ theme }) => theme.cardBg};
     border-radius: 12px;
@@ -78,9 +79,9 @@ const SocialCard = styled(motion.div)`
   }
 
   @media (max-width: 1200px) and (min-width: 1025px) {
-    min-height: 350px; // Ajuste para telas médias
+    min-height: 350px;
   }
-  `;
+`;
 // End Social Area
 
 const LinkEstilizado = styled.a`
@@ -92,13 +93,13 @@ const LinkEstilizado = styled.a`
   border-radius: 8px;
   transition: all 0.3s ease;
   margin-top: auto;
-  display: inline-flex; // Mudar de block para inline-flex
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  white-space: nowrap; // Impede a quebra de linha
-  text-align: right; // Alinha o texto à direita
+  white-space: nowrap;
+  text-align: right;
   position: relative;
-  align-self: flex-end; // Mantém alinhado à direita
+  align-self: flex-end;
   
   &::after {
     content: '';
@@ -130,11 +131,11 @@ const LinkEstilizado = styled.a`
 `;
 
 const Section = styled(motion.div)`
-background: ${({ theme }) => theme.cardBg};
-border-radius: 15px;
-padding: 2rem;
-margin: 2rem 0;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.cardBg};
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 // Contact Area
@@ -155,7 +156,6 @@ const ContactFormContainer = styled(Section)`
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
   @media (max-width: 768px) {
-    /* Estilo igual aos cards do GitHub/LinkedIn */
     background: ${({ theme }) => theme.cardBg};
     border: 1px solid ${({ theme }) => theme.primary}20;
     border-radius: 20px;
@@ -178,56 +178,56 @@ const FormGroup = styled.div`
 `;
 
 const ContactForm = styled.form`
-    display: grid;
+  display: grid;
+  box-sizing: border-box;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  
+  input, textarea {
     box-sizing: border-box;
-    gap: 1.5rem;
-    max-width: 600px;
-    margin: 0 auto;
-  
-    input, textarea {
-      box-sizing: border-box;
-      padding: 1rem;
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      background: ${({ theme }) => theme.inputBg};
-      color: ${({ theme }) => theme.text};
-      font-size: 1rem;
-      transition: all 0.3s;
-  
-      &:focus {
-        border-color: var(--primary);
-        outline: none;
-        box-shadow: 0 0 8px rgba(46, 204, 113, 0.3);
-      }
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: ${({ theme }) => theme.inputBg};
+    color: ${({ theme }) => theme.text};
+    font-size: 1rem;
+    transition: all 0.3s;
+
+    &:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 8px rgba(46, 204, 113, 0.3);
     }
-  
-    button {
-      padding: 1.2rem;
-      background: linear-gradient(45deg, #2ecc71, #27ae60);
-      border: none;
-      border-radius: 12px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      transition: transform 0.2s, opacity 0.2s;
-  
-      &:hover {
-        transform: scale(1.02);
-        opacity: 0.9;
-      }
+  }
+
+  button {
+    padding: 1.2rem;
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    transition: transform 0.2s, opacity 0.2s;
+
+    &:hover {
+      transform: scale(1.02);
+      opacity: 0.9;
     }
+  }
 `;
 // End Contact Area
 
 const FloatingLabel = styled.label`
   position: absolute;
-  left: 2.2rem; // Ajuste de posição
-  top: ${({ hasValue }) => (hasValue ? '-0.7rem' : '1rem')}; // Ajustado
-  font-size: ${({ hasValue }) => (hasValue ? '0.75rem' : '0.9rem')}; // Ajustado
+  left: 2.2rem;
+  top: ${({ hasValue }) => (hasValue ? '-0.7rem' : '1rem')};
+  font-size: ${({ hasValue }) => (hasValue ? '0.75rem' : '0.9rem')};
   color: #888;
   background: ${({ theme }) => theme.cardBg};
   padding: 0 0.5rem;
@@ -237,14 +237,14 @@ const FloatingLabel = styled.label`
 
 // Styled Area
 const StyledInput = styled.input`
-  width: 100%; // Ajuste de largura
-  margin: 0; // Centralização
-  padding: 0.8rem; // Redução do padding
+  width: 100%;
+  margin: 0;
+  padding: 0.8rem;
   border: 2px solid ${({ theme }) => theme.primary};
   border-radius: 10px;
   background: transparent;
   color: ${({ theme }) => theme.text};
-  font-size: 0.95rem; // Reduzido de 1rem
+  font-size: 0.95rem;
   transition: all 0.3s ease;
 
   &:focus {
@@ -261,7 +261,7 @@ const StyledInput = styled.input`
 `;
 
 const StyledTextarea = styled.textarea`
-  width: 100%;; // Mesmo ajuste
+  width: 100%;
   margin: 0;
   padding: 0.8rem;
   border: 2px solid ${({ theme }) => theme.primary};
@@ -269,7 +269,7 @@ const StyledTextarea = styled.textarea`
   background: transparent;
   color: ${({ theme }) => theme.text};
   font-size: 0.95rem;
-  min-height: 120px; // Reduzido de 150px
+  min-height: 120px;
   resize: vertical;
   transition: all 0.3s ease;
 
@@ -290,7 +290,7 @@ const StyledTextarea = styled.textarea`
 // Button Area
 const SubmitButton = styled(motion.button)`
   width: 100%;
-  padding: 1.2rem; // Reduzido de 1.5rem
+  padding: 1.2rem;
   background: linear-gradient(
     45deg,
     ${({ theme }) => theme.primary},
@@ -299,7 +299,7 @@ const SubmitButton = styled(motion.button)`
   border: none;
   border-radius: 10px;
   color: white;
-  font-size: 1rem; // Reduzido de 1.1rem
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   display: flex;
@@ -351,7 +351,7 @@ const SubmitButton = styled(motion.button)`
 `;
 
 const DownloadButton = styled(motion.button)`
-  padding: 1.2rem 2rem; // Reduzido de 1.5rem 3rem
+  padding: 1.2rem 2rem;
   background: linear-gradient(
     45deg,
     ${({ theme }) => theme.primary},
@@ -401,9 +401,9 @@ const QRCodeContainer = styled.div`
   background: ${({ theme }) => theme.cardBg};
   border-radius: 10px;
   display: inline-block;
-  margin: auto 0; // Centraliza verticalmente
+  margin: auto 0;
   border: 2px solid ${({ theme }) => theme.primary};
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // Sombras mais suaves
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 `;
 
 const QRCard = styled.div`
@@ -425,7 +425,6 @@ const QRCard = styled.div`
   }
 `;
 // End QRCode Area
-
 
 const PreviewSection = styled.div`
   position: relative;
@@ -449,8 +448,8 @@ const PreviewSection = styled.div`
 const TypewriterText = styled.span`
   border-right: 2px solid;
   animation: typing 1s steps(40) infinite;
-  display: inline-block; /* Adicionado */
-  max-width: 100%; /* Adicionado */
+  display: inline-block;
+  max-width: 100%;
   
   @keyframes typing {
     from { width: 0 }
@@ -460,6 +459,7 @@ const TypewriterText = styled.span`
 
 const Contact = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const [githubStats, setGithubStats] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -467,6 +467,7 @@ const Contact = () => {
     email: '',
     message: ''
   });
+
   // Efeito de confete
   const showConfetti = () => {
     const count = 200;
@@ -475,25 +476,9 @@ const Contact = () => {
       colors: ['#2ecc71', '#27ae60', '#1abc9c']
     };
 
-    confetti({
-      ...defaults,
-      particleCount: count,
-      spread: 100
-    });
-
-    confetti({
-      ...defaults,
-      particleCount: count,
-      spread: 100,
-      angle: 60
-    });
-
-    confetti({
-      ...defaults,
-      particleCount: count,
-      spread: 100,
-      angle: 120
-    });
+    confetti({ ...defaults, particleCount: count, spread: 100 });
+    confetti({ ...defaults, particleCount: count, spread: 100, angle: 60 });
+    confetti({ ...defaults, particleCount: count, spread: 100, angle: 120 });
   };
 
   // Buscar dados do GitHub
@@ -507,11 +492,10 @@ const Contact = () => {
           stars: data.stargazers_count
         });
       });
-  }, []);;
+  }, []);
 
   // Download do CV
   const handleDownloadCV = () => {
-    // Simulação - coloque seu CV na pasta public
     const link = document.createElement('a');
     link.href = '/CV-LIVIO-GABRIEL.pdf';
     link.download = 'CV-Livio-Santos.pdf';
@@ -525,14 +509,14 @@ const Contact = () => {
 
     emailjs
       .send(
-        'service_a6x3irk', // Service ID
-        'template_5sk97s6', // Template ID
+        'service_a6x3irk',
+        'template_5sk97s6',
         {
           name: formData.name,
           email: formData.email,
           message: formData.message,
         },
-        '5FQDSyT8YPY282Ypm' // User ID
+        '5FQDSyT8YPY282Ypm'
       )
       .then((response) => {
         console.log('Email enviado!', response.status, response.text);
@@ -554,52 +538,55 @@ const Contact = () => {
       transition={{ duration: 0.5 }}
     >
       {/* Seção Social */}
-      <h1>📬 Contato</h1>
+      <h1>{t('contact.heading')}</h1>
+
       <SocialGrid>
         {/* Card GitHub */}
         <SocialCard whileHover={{ y: -5 }}>
-          <h2><FontAwesomeIcon icon={faGithub} /> GitHub</h2>
+          <h2><FontAwesomeIcon icon={faGithub} /> {t('contact.github.title')}</h2>
           <div className="stats-grid">
-            <StatItem icon={faCodeBranch} value={githubStats.public_repos} label="Repositórios" />
-            <StatItem icon={faUserFriends} value={githubStats.followers} label="Seguidores" />
-            <StatItem icon={faStar} value={githubStats.stars} label="Stars" />
+            <StatItem icon={faCodeBranch} value={githubStats.public_repos} label={t('contact.github.repos')} />
+            <StatItem icon={faUserFriends} value={githubStats.followers} label={t('contact.github.followers')} />
+            <StatItem icon={faStar} value={githubStats.stars} label={t('contact.github.stars')} />
           </div>
           <LinkEstilizado
             href="https://github.com/liviogabriel1"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={t('contact.github.visit')}
           >
-            Clique para visitar →
+            {t('contact.github.visit')}
           </LinkEstilizado>
         </SocialCard>
 
         {/* Card LinkedIn */}
         <SocialCard whileHover={{ y: -5 }}>
-          <h2><FontAwesomeIcon icon={faLinkedin} /> LinkedIn</h2>
+          <h2><FontAwesomeIcon icon={faLinkedin} /> {t('contact.linkedin.title')}</h2>
           <div className="stats-grid">
-            <StatItem icon={faBriefcase} value="Full Stack" label="Área de atuação" />
-            <StatItem icon={faUserFriends} value="20+" label="Conexões" />
-            <StatItem icon={faCertificate} value="5" label="Certificados" />
+            <StatItem icon={faBriefcase} value={t('contact.linkedin.area.value')} label={t('contact.linkedin.area')} />
+            <StatItem icon={faUserFriends} value="20+" label={t('contact.linkedin.connections')} />
+            <StatItem icon={faCertificate} value="5" label={t('contact.linkedin.certs')} />
           </div>
           <LinkEstilizado
             href="https://www.linkedin.com/in/l%C3%ADvio-santos-a1965b264/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={t('contact.linkedin.visit')}
           >
-            Clique para ver perfil →
+            {t('contact.linkedin.visit')}
           </LinkEstilizado>
         </SocialCard>
 
         {/* QR Code Integrado */}
         <QRCard>
-          <h2><FontAwesomeIcon icon={faQrcode} /> Contato Rápido</h2>
+          <h2><FontAwesomeIcon icon={faQrcode} /> {t('contact.qr.title')}</h2>
           <QRCodeContainer>
             <QRCodeSVG
               value={`MECARD:N:Livio Cortez;TEL:+5579996757937;EMAIL:liviogabriel6@gmail.com;;`}
               size={128}
             />
           </QRCodeContainer>
-          <p className="qr-description">Digitalize para salvar contatos</p>
+          <p className="qr-description">{t('contact.qr.scan')}</p>
         </QRCard>
       </SocialGrid>
 
@@ -610,19 +597,16 @@ const Contact = () => {
         whileTap={{ scale: 0.95 }}
       >
         <FontAwesomeIcon icon={faDownload} bounce />
-        Baixar Currículo
+        {t('contact.download')}
       </DownloadButton>
 
       {/* Formulário de Contato */}
       <ContactFormContainer>
-        <h2><FontAwesomeIcon icon={faPaperPlane} /> Envie uma Mensagem</h2>
+        <h2><FontAwesomeIcon icon={faPaperPlane} /> {t('contact.form.title')}</h2>
         <ContactForm onSubmit={handleSubmit}>
           {/* Campo Nome */}
           <FormGroup>
-            <FontAwesomeIcon
-              icon={faUser}
-              className="input-icon"
-            />
+            <FontAwesomeIcon icon={faUser} className="input-icon" />
             <StyledInput
               type="text"
               id="name"
@@ -630,20 +614,14 @@ const Contact = () => {
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
             />
-            <FloatingLabel
-              htmlFor="name"
-              hasValue={formData.name.length > 0}
-            >
-              Seu Nome
+            <FloatingLabel htmlFor="name" hasValue={formData.name.length > 0}>
+              {t('contact.form.name')}
             </FloatingLabel>
           </FormGroup>
 
           {/* Campo Email */}
           <FormGroup>
-            <FontAwesomeIcon
-              icon={faEnvelope}
-              className="input-icon"
-            />
+            <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
             <StyledInput
               type="email"
               id="email"
@@ -651,31 +629,22 @@ const Contact = () => {
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
             />
-            <FloatingLabel
-              htmlFor="email"
-              hasValue={formData.email.length > 0}
-            >
-              Seu Email
+            <FloatingLabel htmlFor="email" hasValue={formData.email.length > 0}>
+              {t('contact.form.email')}
             </FloatingLabel>
           </FormGroup>
 
           {/* Campo Mensagem */}
           <FormGroup>
-            <FontAwesomeIcon
-              icon={faComment}
-              className="input-icon textarea-icon"
-            />
+            <FontAwesomeIcon icon={faComment} className="input-icon textarea-icon" />
             <StyledTextarea
               id="message"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               required
             />
-            <FloatingLabel
-              htmlFor="message"
-              hasValue={formData.message.length > 0}
-            >
-              Sua Mensagem
+            <FloatingLabel htmlFor="message" hasValue={formData.message.length > 0}>
+              {t('contact.form.message')}
             </FloatingLabel>
           </FormGroup>
 
@@ -689,12 +658,12 @@ const Contact = () => {
             {isSubmitting ? (
               <>
                 <FontAwesomeIcon icon={faSpinner} spin />
-                Enviando...
+                {t('contact.form.sending')}
               </>
             ) : (
               <>
                 <FontAwesomeIcon icon={faPaperPlane} />
-                Enviar Mensagem
+                {t('contact.form.send')}
               </>
             )}
           </SubmitButton>
@@ -702,22 +671,18 @@ const Contact = () => {
 
         {/* Pré-visualização */}
         <PreviewSection>
-          <h3><FontAwesomeIcon icon={faEye} /> Pré-visualização</h3>
-          <p><strong>De:</strong> {formData.name || '[Seu Nome]'}</p>
-          <p><strong>Email:</strong> {formData.email || '[seu@email.com]'}</p>
-          <p><strong>Mensagem:</strong></p>
+          <h3><FontAwesomeIcon icon={faEye} /> {t('contact.preview.title')}</h3>
+          <p><strong>{t('contact.preview.from')}</strong> {formData.name || '[Seu Nome]'}</p>
+          <p><strong>{t('contact.preview.email')}</strong> {formData.email || '[seu@email.com]'}</p>
+          <p><strong>{t('contact.preview.message')}</strong></p>
           <div className="message-preview">
             {formData.message ? (
-              <div style={{
-                whiteSpace: 'pre-wrap',
-                wordBreak: 'break-word',
-                overflowWrap: 'break-word'
-              }}>
+              <div style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
                 {formData.message}
               </div>
             ) : (
               <span className="placeholder">
-                Sua mensagem aparecerá aqui...
+                {t('contact.preview.placeholder')}
               </span>
             )}
           </div>
@@ -742,7 +707,7 @@ const StatItem = ({ icon, value, label }) => (
       style={{
         width: '24px',
         textAlign: 'center',
-        color: ({ theme }) => theme.primary // Corrigido para usar o tema
+        color: ({ theme }) => theme.primary // mantém como estava
       }}
     />
     <div style={{ flex: 1 }}>
@@ -750,14 +715,14 @@ const StatItem = ({ icon, value, label }) => (
         fontSize: '1.4rem',
         fontWeight: '600',
         lineHeight: '1.2',
-        color: ({ theme }) => theme.text // Corrigido para usar o tema
+        color: ({ theme }) => theme.text // mantém como estava
       }}>
         {value}
       </div>
       {label && <div style={{
         fontSize: '0.85rem',
         opacity: 0.8,
-        color: ({ theme }) => theme.textSecondary // Adicionado cor secundária
+        color: ({ theme }) => theme.textSecondary
       }}>{label}</div>}
     </div>
   </div>

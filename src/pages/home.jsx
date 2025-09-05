@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiMail } from 'react-icons/fi';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import styled from 'styled-components';
 import Avatar from '../components/avatar';
 
@@ -100,6 +100,7 @@ const ContactButton = styled(motion.a).attrs({
 
 const Home = () => {
   const { t } = useTranslation();
+
   return (
     <Container
       initial={{ opacity: 0 }}
@@ -116,7 +117,10 @@ const Home = () => {
             transition={{ delay: 0.3 }}
             style={{ fontSize: '2.5rem', marginBottom: '1rem' }}
           >
-            Olá, eu sou <HighlightText>Lívio Cortez</HighlightText>
+            {/* Título com o nome destacado, preservando o HighlightText */}
+            <Trans i18nKey="home.titleRich" values={{ name: 'Lívio Cortez' }}>
+              Olá, eu sou <HighlightText>Lívio Cortez</HighlightText>
+            </Trans>
           </motion.h1>
 
           <motion.p
@@ -125,25 +129,28 @@ const Home = () => {
             transition={{ delay: 0.6 }}
             style={{ fontSize: '1.2rem', lineHeight: '1.6' }}
           >
-            Desenvolvedor <HighlightText>Full Stack</HighlightText> com expertise em criar soluções escaláveis e
-            performáticas. Combinando habilidades técnicas sólidas com visão estratégica para
-            entregar projetos que unem <HighlightText>performance</HighlightText> e <HighlightText>experiência do usuário</HighlightText>.
+            {/* Parágrafo com os trechos em destaque preservados */}
+            <Trans i18nKey="home.role">
+              Desenvolvedor <HighlightText /> com expertise em criar soluções escaláveis e
+              performáticas. Combinando habilidades técnicas sólidas com visão estratégica para
+              entregar projetos que unem <HighlightText /> e <HighlightText />.
+            </Trans>
           </motion.p>
 
           <SkillsGrid>
             <SkillCard whileHover={{ y: -5 }}>
-              <h3>Front-End</h3>
-              <p>React, Vue, Angular, ES6+</p>
+              <h3>{t('home.skill.front')}</h3>
+              <p>{t('home.skill.front.items')}</p>
             </SkillCard>
 
             <SkillCard whileHover={{ y: -5 }}>
-              <h3>Back-End</h3>
-              <p>Node.js, Python, Express</p>
+              <h3>{t('home.skill.back')}</h3>
+              <p>{t('home.skill.back.items')}</p>
             </SkillCard>
 
             <SkillCard whileHover={{ y: -5 }}>
-              <h3>Cloud & DevOps</h3>
-              <p>AWS, Azure, Docker, CI/CD</p>
+              <h3>{t('home.skill.cloud')}</h3>
+              <p>{t('home.skill.cloud.items')}</p>
             </SkillCard>
           </SkillsGrid>
 
@@ -154,11 +161,11 @@ const Home = () => {
               rel="noopener noreferrer"
               onClick={(e) => {
                 e.preventDefault();
-                window.location.href = "mailto:liviogabriel6@gmail.com";
+                window.location.href = 'mailto:liviogabriel6@gmail.com';
               }}
             >
               <FiMail size={20} />
-              Contato Profissional
+              {t('home.btn.contact')}
             </ContactButton>
 
             <ContactButton
@@ -168,7 +175,7 @@ const Home = () => {
               style={{ background: '#333' }}
             >
               <FiGithub size={20} />
-              Portfólio GitHub
+              {t('home.btn.github')}
             </ContactButton>
           </ContactButtons>
         </div>

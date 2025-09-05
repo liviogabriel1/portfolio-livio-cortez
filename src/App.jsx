@@ -9,15 +9,33 @@ import Projects from './pages/projects';
 import Contact from './pages/contact';
 import Navbar from './components/navbar';
 import ParticlesBackground from './components/particlesBackground';
+import './i18n'; // se ainda não estiver usando i18n, pode remover esta linha
+
+function getInitialDarkMode() {
+  const saved = localStorage.getItem('theme');
+
+  // compatibilidade com valores antigos:
+  if (saved === 'dark') return true;
+  if (saved === 'light') return false;
+  if (saved === 'true') return true;   // se já salvou boolean como string
+  if (saved === 'false') return false;
+
+  // fallback: preferência do sistema
+  const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+  return !!prefersDark;
+}
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme ? JSON.parse(savedTheme) : false;
-  });
+  const [isDarkMode, setIsDarkMode] = useState(getInitialDarkMode);
 
   useEffect(() => {
-    localStorage.setItem('theme', JSON.stringify(isDarkMode));
+    // guarde sempre como 'dark' ou 'light' (sem JSON)
+    const value = isDarkMode ? 'dark' : 'light';
+    localStorage.setItem('theme', value);
+
+    // opcional: refletir no <html> para CSS global/particles/etc.
+    document.documentElement.setAttribute('data-theme', value);
+    // ou: document.documentElement.classList.toggle('dark', isDarkMode);
   }, [isDarkMode]);
 
   return (
@@ -25,7 +43,7 @@ function App() {
       <GlobalStyles />
       <Router>
         <ParticlesBackground theme={isDarkMode ? 'dark' : 'light'} />
-        <Navbar toggleTheme={() => setIsDarkMode(!isDarkMode)} isDarkMode={isDarkMode} />
+        <Navbar toggleTheme={() => setIsDarkMode((v) => !v)} isDarkMode={isDarkMode} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
