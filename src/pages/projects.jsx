@@ -129,7 +129,7 @@ const Projects = () => {
     {
       key: "finantechdash",
       tech: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "JWT", "Material-UI", "Vite"],
-      preview: "/finantech-preview.png",
+      preview: "/finantech-preview.jpg",
       github: "https://github.com/liviogabriel1/FinanTech-Dash",
       demo: "https://finan-tech-dash.vercel.app/"
     },
