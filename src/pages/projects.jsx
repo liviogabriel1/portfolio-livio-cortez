@@ -65,6 +65,7 @@ const PreviewImage = styled(motion.img)`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center; /* Garante que o topo da imagem seja mostrado */
   transition: all 0.4s ease;
 `;
 
@@ -125,6 +126,13 @@ const Projects = () => {
   const { t } = useTranslation();
 
   const projects = [
+    {
+      key: "finantechdash",
+      tech: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "JWT", "Material-UI", "Vite"],
+      preview: "/finantech-preview.png",
+      github: "https://github.com/liviogabriel1/FinanTech-Dash",
+      demo: "https://finan-tech-dash.vercel.app/"
+    },
     {
       key: "draftlab",
       tech: ["React", "Vite", "TypeScript", "Framer Motion", "Socket.IO", "Express", "Node.js"],
